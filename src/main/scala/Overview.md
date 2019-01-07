@@ -1,31 +1,72 @@
 ## Syllabus
 1. What is Functional Programming
-2. val
-3. if is an expression
-4. Recursion Example
-5. Recursion Refresher
-
+1. val
+1. if is an expression
 
 ## Language Features to Teach
 1. pattern matching
-2. apply
-3. if expression
-4. for comprehension
-5. Type system
-6. implicit?
-7. lazy val vs val vs def
-8. case class
-9. trait
+1. apply
+1. if expression
+1. for comprehension
+1. Type system
+1. lazy val vs val vs def
+1. case class
+1. trait
+
 
 ## Functional Programming to Teach
 1. values
-2. immutable collections
-3. functor
-4. execution model?
-5. monad
-6. type class?
-7. referential transparency?
-8. error handling
-9. side effect management?
-10. Option
-11. Either
+1. immutable collections
+1. functor
+1. monad
+1. referential transparency?
+1. error handling
+    1. side effect management?
+    
+    
+Start with the familiar and move toward the different.
+You called out to a service.  It returned a list of videos and photos together
+
+Start with something Scala does well, and is similar to what people are familiar with
+
+1. Present: Intro
+    1. Purpose and Scope of the bootcamp
+    1. What is Functional Programming
+    1. Why is Functional Programming useful
+1. Present: Basic Scala Deviations
+    1. variable declaration
+    1. Basic Type stuff
+    1. function declaration
+    1. All expressions mainly if
+    1. How to work with Scala lists 101
+    1. recursion example: Change Combinations
+    1. @tailrec annotation
+1. Exercise: An intro to Scala
+    * Factorial
+    * 
+1. Present: Intro to Functional Error Handling
+    1. Object definitions
+    1. Option and Either
+    1. Disjunct data types
+    1. The value of putting error in the type
+1. Exercise: Basic Error Handling
+1. Present: Intermediate Functional Error Handling
+    1. Deconstruction
+    1. Pattern Matching
+    1. case class
+1. Exercise: Intermediate Functional Error Handling
+1. Present: Intro to Functional Collections
+    1. How Immutable collections work
+    1. Working with an immutable list with what we have
+    1. High order functions
+    1. Advanced Type System
+    1. map, flatMap, and filter
+1. Exercise: Into to Functional Collections Exercises
+1. Present: Welcome to Monad
+    1. map, flatMap, and filter work on all kinds of immutable collections
+        * It's not strictly limited to collections
+    1. Example with a Binary tree, string, option, and either
+    1. High level definition of what a Monad is
+    1. Introduce for comprehension syntax
+1. Exercise: Ultimate Functional Error Handling
+    
