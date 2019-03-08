@@ -1,18 +1,32 @@
-//So we have a basic ETL process  as part of this ETL process we have to parse strings into people
+//So we have a basic ETL process. As part of this ETL process we have to parse strings into people
 
 //Class definition In the () is the default constructor for this class
-//All members of a class in the default constructor are vals.
-class Person1(val firstName: String, val middleName: String, val lastName: String, val age: Int, val pin: String) {
+//Without val all of the class members will be private
+class Person1(val firstName: String, val middleName: String, val lastName: String, val age: Int, pin: String) {
 
   def this(firstName: String, lastName: String, age: Int, pin: String) = {
     this(firstName: String, "", lastName: String, age: Int, pin: String)
   }
 }
 
-//It's argued that Null is the single most expensive mistake in CS.  It causes billions of dollars of bugs.
+def parse(line: String): Person = {
+
+  val properties = line.split(',')
+
+  val firstName = properties.head
+  val middleName = properties(1)
+  val lastName = properties(2)
+  val age = properties(3).toInt
+  val pin = properties(4)
+
+  new Person1(firstName, middleName, lastName, age, pin)
+}
 
 //But what if the person in the line doesn't have a middle name?
+
+//It's argued that Null is the single most expensive mistake in CS.  It causes billions of dollars of bugs.
 // "" Isn't a great way of representing that a person does not have a middle name, neither is null
+
 // A Person is made up of a firstName AND an Optional middleName AND a lastName AND an age AND a pin
 // To represent an Optional Middle Name we need a type which can be Something OR Nothing
 
@@ -21,7 +35,19 @@ class Person1(val firstName: String, val middleName: String, val lastName: Strin
 //Option is a Disjunction (fancy or)
 //ADTs are always immutable.  Starting from an immutable POJO, ADTs add the ability to link data with OR in addition to AND
 
+//CrazyType = One Int String
+//          | Two Double
+//          | Three CrazyType
+//          | Four
+// (One (Int AND String)) OR (Two Double) OR (Three CrazyType) OR Four
+
 //Any Enum is really an Algebraic Data Type.  It's the most basic disjunction.
+// Genre = Horror
+//       | ScienceFiction
+//       | Fantasy
+//       | Romance
+
+//sealed is basically the same as final: It means it cannot be extended out side of this class
 sealed abstract class Genre {
 
   //No need to use abstract keywords, just omit the body expression
@@ -56,7 +82,7 @@ object CleanRomance extends CleanGenre(3)
 //[A] is how generics are specified in Scala.  The + specifies the type variance (Just ignore this for now)
 sealed abstract class Option[+A] {
 
-  def isEmpty: Boolean //abstract method
+  def isEmpty: Boolean
   def get: A
 }
 sealed class Some[A](val a: A) extends Option[A] {
@@ -97,6 +123,7 @@ def firstParse(line: String): Person = {
 }
 
 //But what happens if "Test,,Testerson,foo,1234" is passed in?
+
 //Since this can throw an error, which we don't allow in Functional world,
 //we have to find a way to wrap the error and put it in the type
 //What we have so far is Option so lets wrap it in an option
