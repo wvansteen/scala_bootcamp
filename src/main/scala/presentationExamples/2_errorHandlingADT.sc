@@ -35,11 +35,14 @@ def parse(line: String): Person = {
 //Option is a Disjunction (fancy or)
 //ADTs are always immutable.  Starting from an immutable POJO, ADTs add the ability to link data with OR in addition to AND
 
-//CrazyType = One Int String
-//          | Two Double
-//          | Three CrazyType
-//          | Four
-// (One (Int AND String)) OR (Two Double) OR (Three CrazyType) OR Four
+//data BinaryExpression = True
+//                      | False
+//                      | Not BinaryExpression
+//                      | Or BinaryExpression BinaryExpression
+//                      | And BinaryExpression BinaryExpression
+//                      | XOr BinaryExpression BinaryExpression
+//True OR False OR (Not BinaryExpression) OR (Or BinaryExpression AND BinaryExpression)
+//OR (And BinaryExpression AND BinaryExpression) OR (XOr BinaryExpression AND BinaryExpression)
 
 //Any Enum is really an Algebraic Data Type.  It's the most basic disjunction.
 // Genre = Horror
@@ -74,6 +77,8 @@ object CleanHorror extends CleanGenre(0)
 object CleanScienceFiction extends CleanGenre(1)
 object CleanCleanFantasy extends CleanGenre(2)
 object CleanRomance extends CleanGenre(3)
+
+
 
 // Optional a = Some(a)
 //            | None
@@ -150,3 +155,113 @@ def secondParse(line: String): Option[Person] = {
 
 
 //So...We're going to implement Either together
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sealed abstract class Either[+A, +B] {
+
+  def isLeft: Boolean
+  def isRight: Boolean
+  def left: A
+  def right: B
+}
+
+sealed class Left[A](val a: A) extends Either[A, Nothing] {
+
+
+  override def left = a
+
+  override def right = throw new Exception("Foo")
+
+  override def isLeft = true
+
+  override def isRight = false
+}
+
+sealed class Right[B](val b: B) extends Either[Nothing, B] {
+  override def isLeft = false
+
+  override def isRight = true
+
+  override def left = throw new Exception("Foo")
+
+  override def right = b
+}
+
+class Error(val message: String)
+def thirdParse(line: String): Either[Error, Person] = {
+
+  val properties = line.split(',')
+
+  val firstName = properties.head
+  val middleName: Option[String] = if(properties(1) == "") None else new Some(properties(1))
+  val lastName = properties(2)
+  val pin = properties(4)
+
+  try {
+    val age = properties(3).toInt
+    new Right(new Person(firstName, middleName, lastName, age, pin))
+  } catch {
+    case a: Throwable => new Left(new Error(a.getMessage))
+  }
+}
+
+//Now...There's got to be a better way to work with these...

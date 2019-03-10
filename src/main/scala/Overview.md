@@ -42,19 +42,18 @@ Start with something Scala does well, and is similar to what people are familiar
     1. How to work with Scala lists 101
     1. recursion example: Change Combinations
     1. @tailrec annotation
-1. Exercise: An intro to Scala
-    * Factorial
-    * 
-1. Present: Intro to Functional Error Handling
+1. Exercise: An intro to Scala  
+1. Present: Functional Error Handling with ADTs
     1. Object definitions
     1. Disjunct data types
     1. Option and Either
-    1. The value of putting error in the type
-1. Exercise: Basic Error Handling
-1. Present: Intermediate Functional Error Handling
+1. Exercise: Lunch
+1. Present: Functional Error Handling: Making ADTs useful
     1. Deconstruction
     1. Pattern Matching
     1. case class
+    1. The value of putting error in the type
+1. Present: Intermediate Functional Error Handling
     1. How Immutable collections work
     1. Working with an immutable list with what we have
 1. Exercise: Intermediate Functional Error Handling
@@ -62,13 +61,7 @@ Start with something Scala does well, and is similar to what people are familiar
     1. High order functions
     1. Advanced Type System
     1. map, flatMap, and filter
-1. Exercise: Into to Functional Collections Exercises
-1. Present: Welcome to Monad
-    1. map, flatMap, and filter work on all kinds of immutable collections
-        * It's not strictly limited to collections
-    1. Example with a Binary tree, string, option, and either
-    1. Introduce for comprehension syntax
-1. Exercise: Ultimate Functional Error Handling
+1. Exercise: Ultimate Exercise
 1. Present: But real programs have state
 
 # Timeline
